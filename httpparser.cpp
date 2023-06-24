@@ -6,7 +6,7 @@
 #include <iterator>
 
 // DEBUG
-//#include <stdio.h>
+// #include <stdio.h>
 
 namespace
 {
@@ -60,13 +60,7 @@ bool HttpRequest::parseInternal(const char *buf, int size)
 
     char *p0 = const_cast<char *>(buf + _nextPos); // 去掉const限制
 
-    while (_decodeState != HttpRequestDecodeState::INVALID 
-            && _decodeState != HttpRequestDecodeState::INVALID_METHOD 
-            && _decodeState != HttpRequestDecodeState::INVALID_URI 
-            && _decodeState != HttpRequestDecodeState::INVALID_VERSION 
-            && _decodeState != HttpRequestDecodeState::INVALID_HEADER 
-            && _decodeState != HttpRequestDecodeState::COMPLETE 
-            && _nextPos < size)
+    while (_decodeState != HttpRequestDecodeState::INVALID && _decodeState != HttpRequestDecodeState::INVALID_METHOD && _decodeState != HttpRequestDecodeState::INVALID_URI && _decodeState != HttpRequestDecodeState::INVALID_VERSION && _decodeState != HttpRequestDecodeState::INVALID_HEADER && _decodeState != HttpRequestDecodeState::COMPLETE && _nextPos < size)
     {
         char ch = *p0;            // 当前字符
         char *p = p0++;           // 指针偏移
@@ -265,6 +259,10 @@ bool HttpRequest::parseInternal(const char *buf, int size)
                             _decodeState = HttpRequestDecodeState::COMPLETE;
                         }
                     }
+                    else
+                    {
+                        _decodeState = HttpRequestDecodeState::COMPLETE;
+                    }
                 }
             }
             else
@@ -281,7 +279,7 @@ bool HttpRequest::parseInternal(const char *buf, int size)
             break;
         }
     }
-    if(_decodeState == HttpRequestDecodeState::COMPLETE)
+    if (_decodeState == HttpRequestDecodeState::COMPLETE)
         return true;
     return false;
 }

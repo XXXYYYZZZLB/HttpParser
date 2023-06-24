@@ -3,7 +3,7 @@
 int main()
 {
 
-    std::string str = "POST /audiolibrary/music?ar=1595301089068&br=888&nn=1p1 HTTP/12.1.0\r\n"
+    std::string str1 = "POST / HTTP/12.1.0\r\n"
                       "Accept: image/gif, application/msword, application//x-shockwave-flash\r\n"
                       "AAA: BBBB\r\n"
                       "Referer: http://www.google.cn\r\n"
@@ -16,6 +16,11 @@ int main()
                       "Cookie: PREF=ID=80a0;;;\r\n"
                       "\r\n"
                       "hl=zh-CN&source=hp&q=domety";
+    std::string str ="GET / HTTP/1.1\r\n"
+                      "Accept-Language: zh-cn\r\n"
+                      //"Content-Length:28\r\n"
+                      "\r\n"
+                      "hl=zh-CN&source=hp&q=domety";;
 
     HttpRequest req;
     bool ret = req.tryDecode(str);
