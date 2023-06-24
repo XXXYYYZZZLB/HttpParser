@@ -74,3 +74,50 @@ int main()
 ```C++
 ```
 
+### 目录结构
+
+```c++
+/*
+HttpParser
+	├── a.out
+	├── httpparser.cpp			 
+	├── httpparser.hpp
+	├── README.md
+	├── test_local.cpp
+	└── test_network.cpp
+*/
+```
+
+### 编程思想
+
+Http请求报文主要由4部分组成，分别为**请求行**、**请求头**、**空行**、**请求体**。
+请求报文格式如下图所示：
+
+![http请求报文](https://img-blog.csdnimg.cn/20210107163242738.png#pic_center)
+
+利用有限状态机模型编程，一般编写程序时都要画出流程图，按照流程图结构来编程，如果编写一个比较繁琐，容易思维混乱的程序时，我们可以利用有限状态机模型画出一个状态转移图，这样便可以利用画出的逻辑图来编写程序，简洁且不易出错。有限状态机，（英语：Finite-state machine, FSM），又称有限状态自动机，简称状态机，是表示有限个状态以及在这些状态之间的转移和动作等行为的数学模型。
+
+<img src="https://cdn.nlark.com/yuque/0/2023/jpeg/29181576/1687508338719-4c900572-4d7c-4bea-8798-7dc699f03021.jpeg?x-oss-process=image%2Fresize%2Cw_457%2Climit_0%2Finterlace%2C1" alt="img" style="zoom:33%;" />
+
+**请求方法**
+请求方法包括GET、HEAD、PUT、POST、TRACE、OPTIONS、DELETE等
+
+**协议**
+协议版本的格式为：HTTP/主版本号.次版本号，常用的有HTTP/1.0和HTTP/1.1
+
+**请求头**
+请求头为一系列键值对形式，格式为键:值
+常见的请求头如下：
+
+| 请求头         | 说明                               |
+| -------------- | ---------------------------------- |
+| Accept         | 告诉服务端客户端接受什么类型的响应 |
+| Content-Length | 表示请求体的长度                   |
+| cookie         | 传递的cookie                       |
+| User-Agent     | 发送请求的应用程序信息             |
+
+**解析HTTP协议的有限状态自动机**
+
+简略图像如下所示，具体见代码及注释
+
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/29181576/1687572595105-2e8479b1-0bc4-4cb9-94c6-ede9dd1169ed.png)
