@@ -7,11 +7,6 @@ HttpParser是基于C++编写的http解析工具 主要使用有限状态机思�
 ```c++
 #include "httpparser.hpp"
 
-/ * *
-  * bool tryDecode(const std::string &buf);
-  * @param buf 需要解析的字符串
-  * @return 解析成功返回true，失败返回false
-  */
 
 HttpRequest req;
 bool ret = req.tryDecode(str);	
